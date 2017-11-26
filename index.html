@@ -1,0 +1,44 @@
+<html>
+<head><script src="cordova.js"></script>
+  <body>
+    <p id='geolocation'></p>
+    <script>
+      // var HOST = location.origin.replace(/^http/, 'ws')
+	  document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log("navigator.geolocation works well");
+		var el = document.getElementById('geolocation');
+		function onSuccess(position) {
+        el.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                            'Longitude: ' + position.coords.longitude     + '<br />' +
+                            '<hr />'      + el.innerHTML;
+		// ws.send( [position.coords.latitude, position.coords.longitude]);
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    // Options: throw an error if no update is received every 30 seconds.
+    //
+    var watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+    }
+      var ws = new WebSocket('ws://192.168.0.100:3000');
+      
+
+      // ws.onopen = function () {
+		//function doStuff() {
+		//	count++;
+		//	ws.send(count);
+		//}
+	//	var myTimer = setInterval(doStuff, 5000);
+	//	myTimer();
+        
+    //};
+	
+    </script>
+  </body>
+</html>
