@@ -20,8 +20,6 @@ var id = -1;
 wss.on('connection',  function (ws){
   console.log('Client connected');
 
-ws.send('Hi');
-
   id++;
   var obj = {};
   obj.x = 0.0;
