@@ -19,6 +19,9 @@ var id = -1;
 
 wss.on('connection',  function (ws){
   console.log('Client connected');
+
+ws.send('Hi');
+
   id++;
   var obj = {};
   obj.x = 0.0;
@@ -27,9 +30,9 @@ wss.on('connection',  function (ws){
   message.push( obj);
   // console.log(obj);
   var iid = id;
-  
+
   console.log('Total: ', id, '\n');
-  
+
   ws.on('message', function incoming(data) {
     // Broadcast to everyone else.
 	 //data = data.data;
@@ -43,12 +46,12 @@ wss.on('connection',  function (ws){
 	});
 	console.log( '}');
   });
-  
+
   ws.on('close', function(){
 	  message[iid].removed = 1;
 	  console.log('Client disconnected');
   });
-  
+
 });
 
 // setInterval(() => {
